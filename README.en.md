@@ -1,15 +1,15 @@
-## release.sh
+## gorelease.sh
 > a helper script for packing Golang binary files
 
 [中文](./README.md) | English
 
 #### Usage
 
-download [release.sh](./release.sh)
+download [gorelease.sh](./gorelease.sh)
 
-`chmod +x release.sh`
+`chmod +x gorelease.sh`
 
-`mv release.sh /usr/local/bin/`
+`mv gorelease.sh /usr/local/bin/`
 
-`cd` binary files directory, run `release.sh`, compressed files will sit in `dist` directory.
+`cd` the directory of binary files , run `gorelease.sh`, compressed files will sit in the `out` directory.
 
