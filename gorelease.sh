@@ -4,8 +4,8 @@ set -e
 
 shopt -s nullglob
 
-# files in current directory with '_' in their names
-files=(*_*)
+# files in current directory with multiple '_' in their names (avoid *_test.go)
+files=(*_*_*)
 
 mkdir -p out
 
