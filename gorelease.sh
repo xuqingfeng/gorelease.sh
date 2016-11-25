@@ -4,6 +4,13 @@ set -e
 
 shopt -s nullglob
 
+usage(){
+    cat <<EOF
+Usage: cd <golang binary directory> && gorelease.sh
+EOF
+    exit 0
+}
+
 # files in current directory with multiple '_' in their names (avoid *_test.go)
 files=(*_*_*)
 
@@ -29,13 +36,22 @@ underscore_to_dash(){
     filename=`echo $1 | tr '_' '-'`
 }
 
+# output usage
+if [ "$1" == "-h" ]; then
+    usage;
+fi
+
+if [ ${#files[@]} -eq 0 ]; then
+    usage;
+fi
+
 for f in ${files[*]}; do
 
     underscore_to_dash $f
     dir="${filename%.*}"
     mkdir -p ./out/$dir
     binary_name $f
-    mv $f ./out/$dir/$binaryname
+    cp $f ./out/$dir/$binaryname
 
     # README & LICENSE
     # ignore file not exist error
@@ -54,4 +70,5 @@ for f in ${files[*]}; do
     fi
 
     rm -rf ./out/$dir
+    rm $f
 done
