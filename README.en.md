@@ -1,9 +1,14 @@
-## gorelease.sh
-> a helper script for packing Golang binary files
+# gorelease.sh
+> a helper script for releasing golang project
 
 [中文](./README.md) | English
 
-#### Usage
+### Features
+
+- build
+- package
+
+### Usage
 
 download [gorelease.sh](./gorelease.sh)
 
@@ -11,5 +16,5 @@ download [gorelease.sh](./gorelease.sh)
 
 `mv gorelease.sh /usr/local/bin/`
 
-`cd` the directory of binary files , run `gorelease.sh`, compressed files will sit in the `out` directory.
+`cd` the directory of `golang` project , run `gorelease.sh [name]` (name is optional), compressed files will sit in the `out` directory.
 
