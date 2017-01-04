@@ -20,10 +20,8 @@ else
 fi
 
 # build darwin bin
-GOOS=darwin GOARCH=arm go build -o "$NAME_$GOOS_$GOARCH" > /dev/null
 GOOS=darwin GOARCH=386 go build -o "$NAME_$GOOS_$GOARCH" > /dev/null
 GOOS=darwin GOARCH=amd64 go build -o "$NAME_$GOOS_$GOARCH" > /dev/null
-GOOS=darwin GOARCH=arm64 go build -o "$NAME_$GOOS_$GOARCH" > /dev/null
 
 # build linux bin
 GOOS=linux GOARCH=386 go build -o "$NAME_$GOOS_$GOARCH" > /dev/null
