@@ -6,10 +6,34 @@ shopt -s nullglob
 
 usage(){
     cat <<EOF
-Usage: cd <golang binary directory> && gorelease.sh
+Usage: cd <golang project directory> && gorelease.sh [name]
 EOF
     exit 0
 }
+
+if [ -z "$1" ]; then
+    # use directory name
+    NAME="${PWD##*/}"
+else
+    # use first arg
+    NAME=$1
+fi
+
+# build darwin bin
+GOOS=darwin GOARCH=arm go build -o "$NAME_$GOOS_$GOARCH" > /dev/null
+GOOS=darwin GOARCH=386 go build -o "$NAME_$GOOS_$GOARCH" > /dev/null
+GOOS=darwin GOARCH=amd64 go build -o "$NAME_$GOOS_$GOARCH" > /dev/null
+GOOS=darwin GOARCH=arm64 go build -o "$NAME_$GOOS_$GOARCH" > /dev/null
+
+# build linux bin
+GOOS=linux GOARCH=386 go build -o "$NAME_$GOOS_$GOARCH" > /dev/null
+GOOS=linux GOARCH=amd64 go build -o "$NAME_$GOOS_$GOARCH" > /dev/null
+GOOS=linux GOARCH=arm go build -o "$NAME_$GOOS_$GOARCH" > /dev/null
+GOOS=linux GOARCH=arm64 go build -o "$NAME_$GOOS_$GOARCH" > /dev/null
+
+# build windows bin
+GOOS=windows GOARCH=386 go build -o "$NAME_$GOOS_$GOARCH" > /dev/null
+GOOS=windows GOARCH=windows go build -o "$NAME_$GOOS_$GOARCH" > /dev/null
 
 # files in current directory with multiple '_' in their names (avoid *_test.go)
 files=(*_*_*)
