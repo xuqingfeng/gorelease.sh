@@ -20,18 +20,18 @@ else
 fi
 
 # build darwin bin
-GOOS=darwin GOARCH=386 go build -o "$NAME_$GOOS_$GOARCH" > /dev/null
-GOOS=darwin GOARCH=amd64 go build -o "$NAME_$GOOS_$GOARCH" > /dev/null
+GOOS=darwin GOARCH=386 go build -o "$NAME_$GOOS_$GOARCH"
+GOOS=darwin GOARCH=amd64 go build -o "$NAME_$GOOS_$GOARCH"
 
 # build linux bin
-GOOS=linux GOARCH=386 go build -o "$NAME_$GOOS_$GOARCH" > /dev/null
-GOOS=linux GOARCH=amd64 go build -o "$NAME_$GOOS_$GOARCH" > /dev/null
-GOOS=linux GOARCH=arm go build -o "$NAME_$GOOS_$GOARCH" > /dev/null
-GOOS=linux GOARCH=arm64 go build -o "$NAME_$GOOS_$GOARCH" > /dev/null
+GOOS=linux GOARCH=386 go build -o "$NAME_$GOOS_$GOARCH"
+GOOS=linux GOARCH=amd64 go build -o "$NAME_$GOOS_$GOARCH"
+GOOS=linux GOARCH=arm go build -o "$NAME_$GOOS_$GOARCH"
+GOOS=linux GOARCH=arm64 go build -o "$NAME_$GOOS_$GOARCH"
 
 # build windows bin
-GOOS=windows GOARCH=386 go build -o "$NAME_$GOOS_$GOARCH" > /dev/null
-GOOS=windows GOARCH=windows go build -o "$NAME_$GOOS_$GOARCH" > /dev/null
+GOOS=windows GOARCH=386 go build -o "$NAME_$GOOS_$GOARCH.exe"
+GOOS=windows GOARCH=amd64 go build -o "$NAME_$GOOS_$GOARCH.exe"
 
 # files in current directory with multiple '_' in their names (avoid *_test.go)
 files=(*_*_*)
