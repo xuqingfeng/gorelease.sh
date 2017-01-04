@@ -19,20 +19,24 @@ else
     NAME=$1
 fi
 
+# https://unix.stackexchange.com/questions/126938/why-is-setting-a-variable-before-a-command-legal-in-bash
+echo "Building..."
 # build darwin bin
-GOOS=darwin GOARCH=386 go build -o "$NAME_$GOOS_$GOARCH"
-GOOS=darwin GOARCH=amd64 go build -o "$NAME_$GOOS_$GOARCH"
+GOOS=darwin GOARCH=386 go build -o "$NAME"_darwin_386
+GOOS=darwin GOARCH=amd64 go build -o "$NAME"_darwin_amd64
 
 # build linux bin
-GOOS=linux GOARCH=386 go build -o "$NAME_$GOOS_$GOARCH"
-GOOS=linux GOARCH=amd64 go build -o "$NAME_$GOOS_$GOARCH"
-GOOS=linux GOARCH=arm go build -o "$NAME_$GOOS_$GOARCH"
-GOOS=linux GOARCH=arm64 go build -o "$NAME_$GOOS_$GOARCH"
+GOOS=linux GOARCH=386 go build -o "$NAME"_linux_386
+GOOS=linux GOARCH=amd64 go build -o "$NAME"_linux_amd64
+GOOS=linux GOARCH=arm go build -o "$NAME"_linux_arm
+GOOS=linux GOARCH=arm64 go build -o "$NAME"_linux_arm64
 
 # build windows bin
-GOOS=windows GOARCH=386 go build -o "$NAME_$GOOS_$GOARCH.exe"
-GOOS=windows GOARCH=amd64 go build -o "$NAME_$GOOS_$GOARCH.exe"
+GOOS=windows GOARCH=386 go build -o "$NAME"_windows_386
+GOOS=windows GOARCH=amd64 go build -o "$NAME"_windows_amd64
 
+
+echo "Packaging..."
 # files in current directory with multiple '_' in their names (avoid *_test.go)
 files=(*_*_*)
 
@@ -60,11 +64,11 @@ underscore_to_dash(){
 
 # output usage
 if [ "$1" == "-h" ]; then
-    usage;
+    usage
 fi
 
 if [ ${#files[@]} -eq 0 ]; then
-    usage;
+    usage
 fi
 
 for f in ${files[*]}; do
