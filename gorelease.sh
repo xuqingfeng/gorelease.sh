@@ -1,4 +1,11 @@
 #!/bin/sh
+########################################################
+#                                                      #
+# This is a helper script for releasing golang project #
+# Author: XuQingfeng                                   #
+# Website: https://github.com/xuqingfeng               #
+#                                                      #
+########################################################
 
 set -e
 
